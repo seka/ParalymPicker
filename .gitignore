@@ -1,0 +1,10 @@
+*.swp
+*.map
+*.log
+*.txt
+*~
+.DS_Store
+test_option.json
+option.json
+/logs/*
+/node_modules/*/

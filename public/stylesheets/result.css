@@ -1,0 +1,41 @@
+/*result*/
+#viewer{
+	padding-top: 30px;
+    width: 900px;
+    height: 350px;
+    overflow: hidden;
+}
+.description{
+	padding-bottom: 20px;
+}
+.event-content_1{
+	overflow: hidden;
+}
+.event-content_1 p,.event-content_2 p,.event-content_3 p{
+	overflow: hidden;
+	padding: 10px;
+}
+.event-content_1 img{
+	float: left;
+}
+.event-content_2{
+	overflow: hidden;
+}
+.event-content_2 img{
+	float: right;
+}
+.event-content_3{
+	overflow: hidden;
+}
+.event-content_3 img{
+	float: left;
+}
+.movie-content{
+	padding: 20px 0px;
+	border-top: solid 1px #cccccc;
+	overflow: hidden;
+}
+.ninja_onebutton {
+	padding-top: 10px;
+	float: right;
+}

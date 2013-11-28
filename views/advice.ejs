@@ -1,0 +1,30 @@
+<% layout('layout') -%>
+<% stylesheet('/stylesheets/advice.css') -%>
+<% stylesheet('/stylesheets/Common/bootstrap.min.css') -%>
+<% script('/javascripts/Common/jquery-1.10.2.min.js') -%>
+<% script('/javascripts/Common/bootstrap.min.js') -%>
+
+<body>
+
+<div class="main">
+
+<div class="header">
+	<div class="header-inner">
+	<img src="http://placehold.it/100x30" alt="ロゴ" />
+	<nav>
+		<ul class="link-list">
+			<li>Top</li>
+			<li>種目リスト</li>
+			<li>種目名</li>
+		</ul>
+	</nav>
+	</div>
+</div>
+
+<div class="contenter">
+<h1>あなたにオススメの種目は</h1>
+<%- eventLists %>
+</div><!--contenter-->
+</div><!--main-->
+</body>
+</html>

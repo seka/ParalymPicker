@@ -1,0 +1,29 @@
+section{
+	overflow: hidden;
+}
+.jumbotron{
+	margin-top: 30px;
+}
+.start_btn{
+	text-align: center;
+	padding: 20px;
+	width: 300px;
+	margin: 0 auto;
+}
+.jumbotron img{
+	margin: 0 auto;
+	display: block;
+}
+.jumbotron p{
+	text-align: center;
+	margin-top: 20px;
+}
+.list_btn a{
+	float: right;
+	margin-right: 30px;
+	margin-left: 20px;
+}
+.usepolicy{
+	float: right;
+	
+}

@@ -1,0 +1,384 @@
+<% layout('layout') -%>
+<% stylesheet('/stylesheets/question.css') -%>
+<% stylesheet('/stylesheets/Common/bootstrap.min.css') -%>
+<% script('/javascripts/Common/jquery-1.10.2.min.js') -%>
+<% script('/javascripts/Common/bootstrap.min.js') -%>
+
+<script type="text/javascript">
+$(function(){
+  window.option = {};
+  window.option.count = 1;
+
+  $("#yes").click(function(){
+      if (window.option.count==1){
+          result1(true);
+      } else if (window.option.count==2){
+          result2(true);
+      } else if (window.option.count==3){
+          result3(true);
+      } else if (window.option.count==4){
+          result4(true);
+      } else if (window.option.count==5){
+          result5(true);
+      } else if (window.option.count==6){
+          result6(true);
+      } else if (window.option.count==7){
+          result7(true);
+      }
+  });
+  $("#no").click(function(){
+      if (window.option.count==1){
+          result1(false);
+      } else if (window.option.count==2){
+          result2(false);
+      } else if (window.option.count==3){
+          result3(false);
+      } else if (window.option.count==4){
+          result4(false);
+      } else if (window.option.count==5){
+          result5(false);
+      } else if (window.option.count==6){
+          result6(false);
+      } else if (window.option.count==7){
+          result7(false);
+      }
+  });
+
+  $.post({
+    type:'POST',
+    url:'/question/json',
+    // dataType:'json',
+    xhrFields : {
+      //cookieのセット
+      withCredentials : true
+    },
+    beforeSend : function(jqXHR, settings){
+      jqXHR.setRequestHeader('X-Requested-By', 'true')
+    }
+  })
+  .done(function(data){
+    console.log("success");
+    console.log(data);
+    var olympic = data[8].id;//オリンピックの質問のid
+  })
+  .fail(function(err){
+    console.log(err);
+    console.log("failed");
+  });
+});
+
+
+function result1(flag){
+	window.option.count++;
+	if($("h2").html()=="オリンピックにあるかどうか"){
+		if(flag){
+			$("h1").html("Q"+window.option.count);
+			$("h2").html("球技か");
+		}else{
+			$("h1").html("Q"+window.option.count);
+			$("h2").html("激しいか");
+		}
+	}
+}
+function result2(flag){
+	window.option.count++;
+	if($("h2").html()=="球技か"){
+		if(flag){
+			$("h1").html("Q"+window.option.count);
+			$("h2").html("ラケットを使うか");
+		}else{
+			$("h1").html("Q"+window.option.count);
+			$("h2").html("水系か");
+		}
+	}
+	if($("h2").html()=="激しいか"){
+		if(flag){
+			$("h1").html("Q"+window.option.count);
+			$("h2").html("目が見えるか");
+		}else{
+			//ボッチャ
+			request = [{categoryID:4, flag:false}, {categoryID:8, flag:false}]
+		}
+	}
+
+
+if(request){
+
+  $.ajax({
+    type:'POST',
+    url:'/submit',
+		data:{
+      results:request
+    },
+    xhrFields : {
+      //cookieのセット
+      withCredentials : true
+    },
+    beforeSend : function(jqXHR, settings){
+      jqXHR.setRequestHeader('X-Requested-By', 'true')
+    }
+  })
+  .done(function(data){
+    console.log("success");
+    $(".contenter").html(data);
+
+  })
+  .fail(function(err){
+    console.log(err);
+    console.log("failed");
+  });
+}
+
+}
+
+function result3(flag){
+	window.option.count++;
+	if($("h2").html()=="ラケットを使うか"){
+		if(flag){
+			$("h1").html("Q"+window.option.count);
+			$("h2").html("テニスか");
+		}else{
+			$("h1").html("Q"+window.option.count);
+			$("h2").html("立った状態か");
+		}
+	}
+	if($("h2").html()=="水系か"){
+		if(flag){
+			$("h1").html("Q"+window.option.count);
+			$("h2").html("乗り物か");
+		}else{
+			$("h1").html("Q"+window.option.count);
+			$("h2").html("激しいか");
+		}
+	}
+	if($("h2").html()=="目が見えるか"){
+		if(flag){
+			//ラグビー
+			request = [{categoryID:2, flag:true}, {categoryID:4, flag:true}, {categoryID:8, flag:false}]
+		}else{
+			//ゴールボール
+			request = [{categoryID:2, flag:false}, {categoryID:4, flag:true}, {categoryID:8, flag:false}]
+		}
+	}
+
+if(request){
+
+  $.ajax({
+    type:'POST',
+    url:'/submit',
+    // dataType:'json',
+		data:{
+      results:request
+    },
+    xhrFields : {
+      //cookieのセット
+      withCredentials : true
+    },
+    beforeSend : function(jqXHR, settings){
+      jqXHR.setRequestHeader('X-Requested-By', 'true')
+    }
+  })
+  .done(function(data){
+    console.log("success");
+    $(".contenter").html(data);
+
+  })
+  .fail(function(err){
+    console.log(err);
+    console.log("failed");
+  });
+}
+}
+
+function result4(flag){
+	window.option.count++;
+	if($("h2").html()=="テニスか"){
+		if(flag){
+			//テニス
+			request = [{categoryID:8, flag:true}, {categoryID:9, flag:true}, {categoryID:10, flag:true}, {categoryID:11, flag:true}]
+		}else{
+			//卓球
+			request = [{categoryID:8, flag:true}, {categoryID:9, flag:true}, {categoryID:10, flag:true}, {categoryID:11, flag:false}]
+		}
+	}
+	if($("h2").html()=="立った状態か"){
+		if(flag){
+			//視覚障害者5人制サッカーと脳性麻痺7人制サッカー
+			request = [{categoryID:8, flag:true}, {categoryID:9, flag:true}, {categoryID:10, flag:false}, {categoryID:12, flag:true}]
+		}else{
+			//車いすバスケットボールとシッティングバレー
+			request = [{categoryID:8, flag:true}, {categoryID:9, flag:true}, {categoryID:10, flag:false}, {categoryID:12, flag:false}]
+		}
+	}
+	if($("h2").html()=="乗り物か"){
+		if(flag){
+			//セーリング、ボート
+			request = [{categoryID:8, flag:true}, {categoryID:9, flag:false}, {categoryID:13, flag:true}, {categoryID:14, flag:true}]
+		}else{
+			//水泳
+			request = [{categoryID:8, flag:true}, {categoryID:9, flag:false}, {categoryID:13, flag:true}, {categoryID:14, flag:false}]
+		}
+	}
+	if($("h2").html()=="激しいか"){
+		if(flag){
+			$("h1").html("Q"+window.option.count);
+			$("h2").html("格闘技か");
+		}else{
+			$("h1").html("Q"+window.option.count);
+			$("h2").html("シューティングか");
+		}
+	}
+
+if(request){
+  $.ajax({
+    type:'POST',
+    url:'/submit',
+    // dataType:'json',
+		data:{
+      results:request
+    },
+    xhrFields : {
+      //cookieのセット
+      withCredentials : true
+    },
+    beforeSend : function(jqXHR, settings){
+      jqXHR.setRequestHeader('X-Requested-By', 'true')
+    }
+  })
+  .done(function(data){
+    console.log("success");
+    $(".contenter").html(data);
+
+  })
+  .fail(function(err){
+    console.log(err);
+    console.log("failed");
+  });
+ }
+
+}
+
+function result5(flag){
+	window.option.count++;
+	if($("h2").html()=="格闘技か"){
+		if(flag){
+			$("h1").html("Q"+window.option.count);
+			$("h2").html("道具を使用するか");
+		}else{
+			$("h1").html("Q"+window.option.count);
+			$("h2").html("レースか");
+		}
+	}
+	if($("h2").html()=="シューティングか"){
+		if(flag){
+			$("h1").html("Q"+window.option.count);
+			$("h2").html("弓より銃が好き？");
+		}else{
+			//馬術
+			request = [{categoryID:4, flag:false}, {categoryID:8, flag:true}, {categoryID:9, flag:false}, {categoryID:13, flag:false}, {categoryID:17, flag:false}]
+		}
+	}
+
+if(request){
+  $.ajax({
+    type:'POST',
+    url:'/submit',
+    // dataType:'json',
+		data:{
+      results:request
+    },
+    xhrFields : {
+      //cookieのセット
+      withCredentials : true
+    },
+    beforeSend : function(jqXHR, settings){
+      jqXHR.setRequestHeader('X-Requested-By', 'true')
+    }
+  })
+  .done(function(data){
+    console.log("success");
+    $(".contenter").html(data);
+  })
+  .fail(function(err){
+    console.log(err);
+    console.log("failed");
+  });
+}
+}
+function result6(flag){
+	window.option.count++;
+	if($("h2").html()=="道具を使用するか"){
+		if(flag){
+			//車いすフェンシング
+			request = [{categoryID:4, flag:true}, {categoryID:5, flag:true}, {categoryID:8, flag:true}, {categoryID:9, flag:false}, {categoryID:13, flag:false}, {categoryID:15, flag:true}]
+		}else{
+			//柔道
+			request = [{categoryID:4, flag:true}, {categoryID:5, flag:false}, {categoryID:8, flag:true}, {categoryID:9, flag:false}, {categoryID:13, flag:false}, {categoryID:15, flag:true}]
+		}
+	}
+	if($("h2").html()=="レースか"){
+		if(flag){
+			//自転車競技、陸上競技
+			request = [{categoryID:4, flag:true}, {categoryID:8, flag:true}, {categoryID:9, flag:false}, {categoryID:13, flag:false}, {categoryID:14, flag:false}, {categoryID:15, flag:false}, {categoryID:16, flag:true}];
+		}else{
+			//パワーリフティング
+			request = [{categoryID:4, flag:true}, {categoryID:8, flag:true}, {categoryID:9, flag:false}, {categoryID:13, flag:false}, {categoryID:15, flag:false}, {categoryID:16, flag:false}];
+		}
+	}
+	if($("h2").html()=="弓より銃が好き？"){
+		if(flag){
+			//射撃
+			request = [{categoryID:4, flag:false}, {categoryID:8, flag:true}, {categoryID:9, flag:false}, {categoryID:13, flag:false}, {categoryID:17, flag:true}, {categoryID:18, flag:true}]
+		}else{
+			//アーチェリー
+			request = [{categoryID:4, flag:false}, {categoryID:8, flag:true}, {categoryID:9, flag:false}, {categoryID:13, flag:false}, {categoryID:17, flag:true}, {categoryID:18, flag:false}]
+		}
+	}
+
+if(request){
+  $.ajax({
+    type:'POST',
+    url:'/submit',
+    // dataType:'json',
+		data:{
+      results:request
+    },
+    xhrFields : {
+      //cookieのセット
+      withCredentials : true
+    },
+    beforeSend : function(jqXHR, settings){
+      jqXHR.setRequestHeader('X-Requested-By', 'true')
+    }
+  })
+  .done(function(data){
+    console.log("success");
+    $(".contenter").html(data);
+
+  })
+  .fail(function(err){
+    console.log(err);
+    console.log("failed");
+  });
+}
+}
+</script>
+
+<div class="main">
+
+<div class="contenter">
+
+
+<h1 id="title">Q1</h1>
+<h2 id="question">オリンピックにあるかどうか</h2>
+
+<div class="qu-content row">
+  <img src="http://placehold.it/300x300&text=YES" alt="" class="img-rounded" id="yes">
+  <img src="http://placehold.it/300x300&text=NO" alt="" class="img-rounded" id="no">
+</div>
+
+</div><!--contenter-->
+</div><!--main-->
+
+</body>
+</html>

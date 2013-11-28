@@ -1,0 +1,27 @@
+<% layout('layout') -%>
+
+<!-- this page's stylesheet -->
+<% stylesheet('/stylesheets/Select/main.css') -%>
+
+<!-- this page's javascripts -->
+<% script('/javascripts/Select/app.js') -%>
+
+<!-- <session>タグの中に記述されます -->
+<div class="contents">
+  <div class="selecters pull-right" >
+    <div id="lessons" class="pull-right">
+      <!-- 文字列をhtml解釈にして表示 !-->
+      <%- selectLesson %>
+    </div>
+    <div class="pull-right">+</div>
+    <div class="pull-right">
+      <!-- 文字列として表示 !-->
+      <%= selectGrade %>
+    </div>
+  </div>
+
+  <!-- table -->
+  <div id="questions" class="questionList">
+      <img class="instruction" src="/images/300x300.png" alt="instruction" />
+  </div>
+</div>

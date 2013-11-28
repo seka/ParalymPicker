@@ -1,0 +1,64 @@
+<% layout('layout') -%>
+<% stylesheet('/stylesheets/result.css') -%>
+<% stylesheet('/stylesheets/Common/bootstrap.min.css') -%>
+<% script('/javascripts/Common/jquery-1.10.2.min.js') -%>
+<% script('/javascripts/Common/bootstrap.min.js') -%>
+
+<script type="text/javascript">
+$(function(){
+    var setImg = '#viewer';
+    var fadeSpeed = 3000;
+    var switchDelay = 5000;
+
+    $(setImg).children('img').css({opacity:'0'});
+    $(setImg + ' img:first').stop().animate({opacity:'1',zIndex:'20'},fadeSpeed);
+});
+</script>
+
+<div class="main">
+  <div class="container">
+    <h1>あなたのオススメの種目は…</h1>
+    <div id="viewer">
+      <%- sportsImage %>
+    </div>
+    <div class="ninja_onebutton">
+    <script type="text/javascript">
+    //<![CDATA[
+    (function(d){
+      if(typeof(window.NINJA_CO_JP_ONETAG_BUTTON_2c33270ce30e9ce85d6d986255da8a2c)=='undefined'){
+        document.write("<sc"+"ript type='text\/javascript' src='http:\/\/omt.shinobi.jp\/b\/2c33270ce30e9ce85d6d986255da8a2c'><\/sc"+"ript>");
+      }else{
+        window.NINJA_CO_JP_ONETAG_BUTTON_2c33270ce30e9ce85d6d986255da8a2c.ONETAGButton_Load();}
+      })(document);
+      //]]>
+      </script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
+    </div>
+
+
+    <div class="description row">
+      <div class="left_des col-lg-8">
+
+        <div class="event-content_1">
+          <h2>概要</h2>
+	  <%- introImage %>
+          <p data-meaningful="true" ct-id="2"><%- introduction %> </p>
+        </div>
+
+        <div class="event-content_2">
+          <h2>見どころ!</h2>
+	  <%- pointImage %>
+          <p data-meaningful="true" ct-id="2"><%- pointText %></p>
+        </div>
+      </div>
+      <div class="right_des col-lg-4">
+        <div class="column-content_1">
+          <h2>Heading</h2>
+          <p data-meaningful="true" ct-id="2">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        </div>
+      </div>
+    </div><!--description row-->
+    <div class="movie-content">
+      <%- movies %>
+    </div>
+  </div><!--container-->
+</div><!--main-->

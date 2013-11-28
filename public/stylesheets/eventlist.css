@@ -1,0 +1,8 @@
+/*eventlist*/
+.contenter{
+	overflow: hidden;
+	padding-top:20px;
+}
+.upper-event,.lower-event{
+	overflow: hidden;
+}

@@ -1,0 +1,29 @@
+.main{
+  width: 900px;
+  margin: 0 auto;
+  height:500px;
+  background: url("/images/back.png");
+  margin-top: 60px;
+}
+.row{
+  margin-right: -15px;
+  margin-left: -15px;
+  text-align: center;
+}
+.row img{
+  padding: 0 20px;
+}
+.img-rounded:hover{
+  opacity: 0.8;
+}
+
+.img-rounded:active{
+  opacity: 0.8;
+}
+
+#title{
+  text-align: center;
+}
+#question{
+  text-align: center;
+}
